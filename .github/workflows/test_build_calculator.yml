@@ -36,4 +36,36 @@ jobs:
           #echo test, and deploy your project.          
           echo PWD: "$pwd"
           echo LabVIEW_Build_Trigger
-          LabVIEWCLI -LogToConsole true -OperationName ExecuteBuildSpec -ProjectPath "$pwd\source\LV_Calculator.lvproj" -BuildSpecName "LV_Calculator" -LabVIEWPath "C:\Program Files (x86)\National Instruments\LabVIEW 2023\LabVIEW.exe" -PortNumber 3363
+      
+      # Build LabVIEW Executable via LabVIEWCLI
+      - name: LabVIEW build
+        run: LabVIEWCLI -LogToConsole true -OperationName ExecuteBuildSpec -ProjectPath "$pwd\source\LV_Calculator.lvproj" -BuildSpecName "LV_Calculator" -LabVIEWPath "C:\Program Files (x86)\National Instruments\LabVIEW 2023\LabVIEW.exe" -PortNumber 3363
+      
+      # Get Executable Version Information
+      - name: version
+        run: echo "::set-output name=version::1.0.0"
+        id: version
+      
+      # Create GitHub Release  
+      - name: release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          release_name: ${{ steps.version.outputs.version }}
+          tag_name: ${{ github.ref }}
+          body_path: CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          
+      # Upload Executable to GitHub Release
+      - name: upload build artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./builds/LV_Calculator/LV_Calculator/LV_Calculator.exe
+          asset_name: LV_Calculator.exe
+          asset_content_type: application/exe
