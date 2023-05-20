@@ -28,7 +28,8 @@ jobs:
       # Print current local direcotry used for release process and set a dummy version file from tag
       - name: Create ${{ github.ref_name }}.buildversion
         run: |
-          echo PWD "$pwd"
+          echo version-file "$pwd\source\PreBuild\${{ github.ref_name }}.buildversion"
+          
           type nul > "$pwd\source\PreBuild\${{ github.ref_name }}.buildversion"
         
       # Set LabVIEW Build spec version from dummy version file
