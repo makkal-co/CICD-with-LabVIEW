@@ -24,7 +24,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      
+        
+      # Print current local direcotry used for release process
+      - name: Work Directory
+      - run: echo PWD "$pwd"
+        
       # Get Executable Version Information
       - name: version
         run: echo "::set-output name=version::v1.0.0"
