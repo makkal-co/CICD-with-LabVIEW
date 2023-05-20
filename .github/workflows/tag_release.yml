@@ -27,7 +27,7 @@ jobs:
         
       # Print current local direcotry used for release process
       - name: Work Directory
-      - run: echo PWD "$pwd"
+        run: echo PWD "$pwd"
         
       # Get Executable Version Information
       - name: version
