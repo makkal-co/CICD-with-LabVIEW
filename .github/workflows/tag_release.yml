@@ -25,17 +25,25 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
         
-      # Print current local direcotry used for release process
-      - name: Work Directory
+      # Print current local direcotry used for release process and set a dummy version file from tag
+      - name: Create ${{ github.ref_name }}.buildversion
         run: |
           echo PWD "$pwd"
-          touch ./source/PreBuild/v${{ github.ref }}.buildversion
+          type nul > ./source/PreBuild/${{ github.ref_name }}.buildversion
+        
+      # Set LabVIEW Build spec version from dummy version file
+      - name: LabVIEW build spec ver update
+        run: LabVIEWCLI -OperationName RunVI -VIPath "$pwd\source\PreBuild\RunCL - Set Version Info.vi" "$pwd\source\LV_Calculator.lvproj" "LV_Calculator" "My Computer"
         
       # Get Executable Version Information
       - name: version
         run: echo "::set-output name=version::v1.0.1"
         id: version
-        
+      
+      # Build LabVIEW Executable via LabVIEWCLI
+      - name: LabVIEW build
+        run: LabVIEWCLI -LogToConsole true -OperationName ExecuteBuildSpec -ProjectPath "$pwd\source\LV_Calculator.lvproj" -BuildSpecName "LV_Calculator" -LabVIEWPath "C:\Program Files (x86)\National Instruments\LabVIEW 2023\LabVIEW.exe" -PortNumber 3363
+      
       # Create GitHub Release  
       - name: release
         uses: actions/create-release@v1
@@ -43,7 +51,7 @@ jobs:
         with:
           draft: false
           prerelease: false
-          release_name: ${{ steps.version.outputs.version }}
+          release_name: ${{ github.ref_name }}
           tag_name: ${{ github.ref }}
           body_path: CHANGELOG.md
         env:
