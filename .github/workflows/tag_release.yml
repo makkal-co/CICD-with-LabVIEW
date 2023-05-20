@@ -30,7 +30,7 @@ jobs:
         run: |
           echo version-file "$pwd\source\PreBuild\${{ github.ref_name }}.buildversion"
           
-          type nul>${{ github.ref_name }}.buildversion
+          ni "$pwd\source\PreBuild\${{ github.ref_name }}.buildversion"
         
       # Set LabVIEW Build spec version from dummy version file
       - name: LabVIEW build spec ver update
