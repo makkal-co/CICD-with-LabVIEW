@@ -31,7 +31,7 @@ jobs:
         
       # Get Executable Version Information
       - name: version
-        run: echo "::set-output name=version::v1.0.0"
+        run: echo "::set-output name=version::v1.0.1"
         id: version
         
       # Create GitHub Release  
