@@ -13,6 +13,7 @@
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
 		<Item Name="PreBuildActions" Type="Folder">
 			<Item Name="Pre-Build Action.vi" Type="VI" URL="../PreBuild/Pre-Build Action.vi"/>
+			<Item Name="RunCL - Set Version Info.vi" Type="VI" URL="../PreBuild/RunCL - Set Version Info.vi"/>
 		</Item>
 		<Item Name="Add.vi" Type="VI" URL="../SubVIs/Add.vi"/>
 		<Item Name="Main.vi" Type="VI" URL="../Main.vi"/>
@@ -120,8 +121,8 @@
 				<Property Name="Bld_modifyLibraryFile" Type="Bool">true</Property>
 				<Property Name="Bld_preActionVIID" Type="Ref">/My Computer/PreBuildActions/Pre-Build Action.vi</Property>
 				<Property Name="Bld_previewCacheID" Type="Str">{857101C8-A55E-4577-8980-2B17F3BA4C13}</Property>
-				<Property Name="Bld_version.build" Type="Int">1</Property>
 				<Property Name="Bld_version.major" Type="Int">1</Property>
+				<Property Name="Bld_version.patch" Type="Int">2</Property>
 				<Property Name="Destination[0].destName" Type="Str">LV_Calculator.exe</Property>
 				<Property Name="Destination[0].path" Type="Path">../builds/NI_AB_PROJECTNAME/LV_Calculator/LV_Calculator.exe</Property>
 				<Property Name="Destination[0].preserveHierarchy" Type="Bool">true</Property>
