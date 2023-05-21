@@ -4,3 +4,6 @@
 
 ## v1.0.5.9
 - Various CI CD enablements happened using GitHub Actions
+
+## v1.0.5.10
+- Including subtraction function
