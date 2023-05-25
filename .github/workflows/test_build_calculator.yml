@@ -19,7 +19,7 @@ jobs:
   build:
     permissions: write-all
     # The type of runner that the job will run on
-    runs-on: labview2023-win10
+    runs-on: LabVIEW_Build_Machine
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
