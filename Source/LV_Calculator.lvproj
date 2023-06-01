@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='UTF-8'?>
-<Project Type="Project" LVVersion="14008000">
+<Project Type="Project" LVVersion="23008000">
 	<Property Name="NI.LV.All.SourceOnly" Type="Bool">true</Property>
 	<Item Name="My Computer" Type="My Computer">
 		<Property Name="server.app.propertiesEnabled" Type="Bool">true</Property>
@@ -22,6 +22,7 @@
 				<Property Name="App_INI_aliasGUID" Type="Str">{1819364E-7488-4141-80B2-DDF3FCEABA14}</Property>
 				<Property Name="App_INI_GUID" Type="Str">{2B789E2F-70E4-4BF7-910B-785DD9BE2AE9}</Property>
 				<Property Name="App_serverConfig.httpPort" Type="Int">8002</Property>
+				<Property Name="App_serverType" Type="Int">1</Property>
 				<Property Name="Bld_buildCacheID" Type="Str">{87F8A920-4E67-4358-8A42-E19523B428E1}</Property>
 				<Property Name="Bld_buildSpecName" Type="Str">LV_Calculator</Property>
 				<Property Name="Bld_excludeInlineSubVIs" Type="Bool">true</Property>
