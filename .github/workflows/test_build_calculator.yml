@@ -26,6 +26,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       
+      # Run Unit Tests before executable build
+      - name: LabVIEW Caraya Unit Tests
+        run: LabVIEWCLI -OperationName RunVI -VIPath "$pwd\Source\Pre-Build\RunCL - Run All Tests.vi" 
+      
       # Build LabVIEW Executable via LabVIEWCLI
       - name: LabVIEW build
         run: LabVIEWCLI -LogToConsole true -OperationName ExecuteBuildSpec -ProjectPath "$pwd\source\LV_Calculator.lvproj" -BuildSpecName "LV_Calculator" -LabVIEWPath "C:\Program Files (x86)\National Instruments\LabVIEW 2023\LabVIEW.exe" -PortNumber 3363
