@@ -32,5 +32,5 @@ jobs:
       
       # Build LabVIEW Executable via LabVIEWCLI
       - name: LabVIEW build
-        run: LabVIEWCLI -LogToConsole true -OperationName ExecuteBuildSpec -ProjectPath "$pwd\source\LV_Calculator.lvproj" -BuildSpecName "LV_Calculator" -LabVIEWPath "C:\Program Files (x86)\National Instruments\LabVIEW 2023\LabVIEW.exe" -PortNumber 3363
+        run: LabVIEWCLI -LogToConsole true -OperationName ExecuteBuildSpec -ProjectPath "$pwd\source\LV_Calculator.lvproj" -BuildSpecName "LV_Calculator" -LabVIEWPath "C:\Program Files (x86)\National Instruments\LabVIEW 2020\LabVIEW.exe" -PortNumber 3363
       
