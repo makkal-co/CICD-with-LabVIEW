@@ -38,13 +38,21 @@ jobs:
       - name: LabVIEW Caraya Unit Tests
         run: LabVIEWCLI -OperationName RunVI -VIPath "$pwd\Source\Pre-Build\RunCL - Run All Tests.vi" 
       
-      # Publish Test Results
-      - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action/composite@v2
-        if: always()
+      # Test report upload
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()                  # run this step even if previous step failed
         with:
-          files: |
-            /Source/test-results/**/*.xml
+          name: LabVIEW Tests                       # Name of the check run which will be created
+          path: /Source/test-results/**/*.xml       # Path to test results
+          reporter: jest-junit                      # Format of test results
+    # # Publish Test Results
+    # - name: Publish Test Results
+    #   uses: EnricoMi/publish-unit-test-result-action/composite@v2
+    #   if: always()
+    #   with:
+    #     files: |
+    #       /Source/test-results/**/*.xml
             
       # Build LabVIEW Executable via LabVIEWCLI
       - name: LabVIEW build
