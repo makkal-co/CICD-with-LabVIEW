@@ -30,7 +30,15 @@ jobs:
       - name: LabVIEW Caraya Unit Tests
         run: LabVIEWCLI -OperationName RunVI -VIPath "$pwd\Source\Pre-Build\RunCL - Run All Tests.vi" 
       
+      # Publish Test Results
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action/composite@v2
+        if: always()
+        with:
+          files: |
+            /Source/test-results/**/*.xml
+            
       # Build LabVIEW Executable via LabVIEWCLI
       - name: LabVIEW build
-        run: LabVIEWCLI -LogToConsole true -OperationName ExecuteBuildSpec -ProjectPath "$pwd\source\LV_Calculator.lvproj" -BuildSpecName "LV_Calculator" -LabVIEWPath "C:\Program Files (x86)\National Instruments\LabVIEW 2020\LabVIEW.exe" -PortNumber 3363
+        run: LabVIEWCLI -LogToConsole true -OperationName ExecuteBuildSpec -ProjectPath "$pwd\source\LV_Calculator.lvproj" -BuildSpecName "LV_Calculator" -LabVIEWPath "C:\Program Files (x86)\National Instruments\LabVIEW 2023\LabVIEW.exe" -PortNumber 3363
       
