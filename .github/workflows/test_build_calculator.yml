@@ -45,7 +45,7 @@ jobs:
         with:
           name: LabVIEW Tests                       # Name of the check run which will be created
           path: Source/test-results/**/*.xml        # Path to test results
-          reporter: jest-junit                      # Format of test results
+          reporter: java-junit                      # Format of test results
     # # Publish Test Results
     # - name: Publish Test Results
     #   uses: EnricoMi/publish-unit-test-result-action/composite@v2
