@@ -21,15 +21,8 @@ jobs:
     # The type of runner that the job will run on
     runs-on: self-hosted
     
-  # env:
-  #   bash: 'C:\Program Files\Git\git-bash.exe'
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # EnricoMi Test Result publish uses python
-     #- uses: actions/setup-python@v4
-     #  with:
-     #    python-version: '3.11.4'
           
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
@@ -46,13 +39,6 @@ jobs:
           name: LabVIEW Tests                       # Name of the check run which will be created
           path: Source/test-results/**/*.xml        # Path to test results
           reporter: java-junit                      # Format of test results
-    # # Publish Test Results
-    # - name: Publish Test Results
-    #   uses: EnricoMi/publish-unit-test-result-action/composite@v2
-    #   if: always()
-    #   with:
-    #     files: |
-    #       /Source/test-results/**/*.xml
             
       # Build LabVIEW Executable via LabVIEWCLI
       - name: LabVIEW build
