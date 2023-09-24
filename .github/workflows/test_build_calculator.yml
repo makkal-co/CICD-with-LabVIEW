@@ -21,8 +21,8 @@ jobs:
     # The type of runner that the job will run on
     runs-on: self-hosted
     
-    env:
-    # bash: 'C:\Program Files\Git\git-bash.exe'
+  # env:
+  #   bash: 'C:\Program Files\Git\git-bash.exe'
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
