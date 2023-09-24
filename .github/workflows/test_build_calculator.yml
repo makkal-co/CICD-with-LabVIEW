@@ -27,9 +27,9 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # EnricoMi Test Result publish uses python
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.11.4'
+     #- uses: actions/setup-python@v4
+     #  with:
+     #    python-version: '3.11.4'
           
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
