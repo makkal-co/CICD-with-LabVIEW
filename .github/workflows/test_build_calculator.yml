@@ -20,12 +20,26 @@ jobs:
     permissions: write-all
     # The type of runner that the job will run on
     runs-on: self-hosted
-
+    
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+          
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       
+      # Run Unit Tests before executable build
+      - name: LabVIEW Caraya Unit Tests
+        run: LabVIEWCLI -OperationName RunVI -VIPath "$pwd\Source\Pre-Build\RunCL - Run All Tests.vi" 
+      
+      # Test report upload
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()                  # run this step even if previous step failed
+        with:
+          name: LabVIEW Tests                       # Name of the check run which will be created
+          path: Source/test-results/**/*.xml        # Path to test results
+          reporter: java-junit                      # Format of test results
+            
       # Build LabVIEW Executable via LabVIEWCLI
       - name: LabVIEW build
         run: LabVIEWCLI -LogToConsole true -OperationName ExecuteBuildSpec -ProjectPath "$pwd\source\LV_Calculator.lvproj" -BuildSpecName "LV_Calculator" -LabVIEWPath "C:\Program Files (x86)\National Instruments\LabVIEW 2023\LabVIEW.exe" -PortNumber 3363
